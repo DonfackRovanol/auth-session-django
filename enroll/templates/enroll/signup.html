@@ -1,0 +1,30 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Sign up</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for form in form  %}
+            {{ form.label_tag }} {{ form }} {{ form.errors|striptags }} <br><br>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Sign up</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <small {% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}} </small>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'login' %}">login</a>
+    <script src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>User Login</title>
+</head>
+<body>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                  <p style="color: red;"> {{error}} </p>
+            {% endfor %} 
+        {% endif %}     
+        {% for form in form  %}
+            {{ form.label_tag }} {{ form }} {{ form.errors|striptags }} <br><br>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+    <a href="{% url 'signup' %}">signup</a>
+    <script src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
